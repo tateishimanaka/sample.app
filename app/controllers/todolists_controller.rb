@@ -5,9 +5,7 @@ class TodolistsController < ApplicationController
   
   def create
     list = List.new(list_params)
-    
     list.save
-    
     redirect_to todolist_path(list.id)
   end
   
@@ -23,10 +21,18 @@ class TodolistsController < ApplicationController
     @list = List.find(params[:id])
   end
   
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to todolist_path(list.id)
+  end
+  
   private
   
   def list_params
       params.require(:list).permit(:title, :body)
   end
+ 
+  
 end
   
