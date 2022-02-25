@@ -24,7 +24,7 @@ describe '投稿のテスト' do
     end
     context '表示の確認' do
       it 'todolists_new_pathが"/todolists/new"であるか' do
-        expect(current_path).to eq('todolists/new')
+        expect(current_path).to eq('/todolists/new')
       end
       it '投稿ボタンが表示されているか' do
         expect(page).to have_button '投稿'
@@ -32,8 +32,8 @@ describe '投稿のテスト' do
     end
     context '投稿処理のテスト' do
       it '投稿後のリダイレクト先は正しいか' do
-        fill_in 'list[title]', with: Faker::Lerem.characters(number:5)
-        fill_in 'list[body]', with: Faker::Lerem.characters(number:20)
+        fill_in 'list[title]', with: Faker::Lorem.characters(number:5)
+        fill_in 'list[body]', with: Faker::Lorem.characters(number:20)
         click_button '投稿'
         expect(page).to have_current_path todolist_path(List.last)
       end
@@ -68,7 +68,7 @@ describe '投稿のテスト' do
       it '編集の遷移先は編集画面か' do
         edit_link = find_all('a')[3]
         edit_link.click
-        expect(current_path).to eq('/todolists/' + list.id.to_S + '/edit')
+        expect(current_path).to eq('/todolists/' + list.id.to_s + '/edit')
       end
     end
     context 'list削除のテスト' do
@@ -93,8 +93,8 @@ describe '投稿のテスト' do
     end
     context '更新処理に関するテスト' do
       it '更新後のリダイレクト先は正しいか' do
-        fill_in 'list[title]', with: Faker::Lerem.characters(number:5)
-        fill_in 'list[body]', with: Faker::Lerem.characters(number:20)
+        fill_in 'list[title]', with: Faker::Lorem.characters(number:5)
+        fill_in 'list[body]', with: Faker::Lorem.characters(number:20)
         click_button '保存'
         expect(page).to have_current_path todolist_path(list)
       end
